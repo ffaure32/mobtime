@@ -5,7 +5,7 @@ import { Http } from './http';
 import { Websocket } from './websocket';
 
 const port = process.env.PORT || 1234;
-const host = process.env.HOST || 'localhost';
+const host = process.env.HOST || '0.0.0.0';
 const Storage = storage.make();
 
 app({
