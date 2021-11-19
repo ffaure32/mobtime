@@ -187,11 +187,23 @@ export const ProfileModalGiphySearch = (state, giphySearch) => [
   }),
 ];
 
+function getRoleForPos(position, posIndex, state) {
+  return `Next ${position} is: ${
+    state.shared.mob.length > posIndex
+      ? state.shared.mob[posIndex].name
+      : 'Unknown'
+  } `;
+}
+
 export const EndTurn = state => {
   if (state.timerStartedAt === null) {
     return state;
   }
 
+  const nextPositions = state.shared.positions
+    .split(',')
+    .map((pos, index) => getRoleForPos(pos, index, state))
+    .join('\n');
   return [
     State.endTurn(state),
     effects.UpdateTitleWithTime({
@@ -202,7 +214,7 @@ export const EndTurn = state => {
       notification: state.allowNotification,
       sound: state.profile.allowSound,
       title: 'Mobtime',
-      text: 'The timer is up!',
+      text: `The timer is up!\n ${nextPositions}`,
       externals: state.externals,
     }),
   ];
