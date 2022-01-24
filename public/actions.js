@@ -204,6 +204,7 @@ export const EndTurn = state => {
     .split(',')
     .map((pos, index) => getRoleForPos(pos, index, state))
     .join('\n');
+
   return [
     State.endTurn(state),
     effects.UpdateTitleWithTime({
@@ -217,6 +218,7 @@ export const EndTurn = state => {
       text: `The timer is up!\n ${nextPositions}`,
       externals: state.externals,
     }),
+    effects.PlayHonk(state.externals.honk),
   ];
 };
 
