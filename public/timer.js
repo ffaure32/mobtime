@@ -28,7 +28,9 @@ app({
         localStorage: window.localStorage,
         document: window.document,
         Notification: window.Notification,
-        honk: new Audio('https://bigsoundbank.com/UPLOAD/mp3/1828.mp3'),
+        honk: new Audio(
+          'https://sinchtime.herokuapp.com/sounds/jingle_mobtime.mp3',
+        ),
         makeId: () =>
           Math.random()
             .toString(36)
